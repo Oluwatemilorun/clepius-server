@@ -4,7 +4,7 @@ from app import db
 # from 
 
 class ContactRecord(db.Document):
-	user = GenericReferenceField()
+	user_type = GenericReferenceField()
 	label = StringField(required=True, max_length=15)
 
 	meta = {'allow_inheritance': True}

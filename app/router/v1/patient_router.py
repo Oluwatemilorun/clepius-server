@@ -1,10 +1,10 @@
 from flask_restful import Api
 
-from app.resources.user_resources import AllUsers
+from app.resources.patient_resources import Patients
 
-user_router = Api()
+Patient_router = Api()
 
-user_router.add_resource(AllUsers, '/user')
+Patient_router.add_resource(Patients, '/patient')
 
 # api.add_resource(AllUsers, '/users')
 # api.add_resource(SingleUser, '/users/<user_reg>')

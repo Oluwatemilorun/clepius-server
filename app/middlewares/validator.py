@@ -1,8 +1,9 @@
 from functools import wraps
 from flask import request, url_for, abort
 from app.utils import response, decorators
+from app import jsonify
 
-@decorators.parameterized(fn)
+@decorators.parameterized
 def validate(fn, validator):
 
 	def validate_decorator(*xs, **kws):
@@ -18,10 +19,18 @@ def validate(fn, validator):
 				return fn(*xs, **kws)
 
 		except Exception as e:
-			return response.error(
-				data=e,
-				message='An error occured',
-				status=500
-			)
+			if e.__class__.__name__ == 'ValidationError':
+				return response.error(
+					data=e.errors,
+					message='Invalid Request Body',
+					status=422
+				)
+			else:
+				return response.error(
+					data=e,
+					message='An error occured',
+					status=500
+				)
+				
 
 	return validate_decorator

@@ -1,7 +1,7 @@
 from flask_restful import Api
 
-from app.resources.staff_resources import Staff
+from app.resources.staff_resources import Staffs
 
-staff_router = Api()
+Staff_router = Api()
 
-staff_router.add_resource(Staff, '/staff')
+Staff_router.add_resource(Staffs, '/staff')
